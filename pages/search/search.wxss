@@ -57,12 +57,16 @@
 }
 
 .last-search-view  view {
-  color: #b5b5b5;
-  font-size: 24rpx;
+  color: #282828;
+  font-size: 28rpx;
 }
 
 .last-search-con {
-  color: #c0c0c0;
-  font-size: 26rpx;
-  padding: 18rpx 30rpx;
+  display: inline-block;
+  color: #282828;
+  font-size: 25rpx;
+  padding: 8rpx 22rpx;
+  margin: 20rpx 20rpx 0 0;
+  border: 1rpx solid #DBDBDB;
+  border-radius: 26rpx;
 }

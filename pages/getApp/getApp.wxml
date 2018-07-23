@@ -4,14 +4,15 @@
   <view class='logo-view'>
     <image src='../../images/icon/get-app-logo.png'></image>
   </view>
+  <view class='bottom-view'>
+    <image src='{{scene[0]}}' bindtap="previewImage"></image>
+  </view>
   <view class='account'>
-    <view>{{ info }}</view>
+    <view style='font-weight: bold;'>长按识别二维码并关注【惠军工程】公众号</view>
+    <view class='small-in'>微信公众号{{ info }}</view>
   </view>
   <view class='btn-view'>
     <view>下载惠军APP</view>
   </view>
-  <view class='bottom-view'>
-     <view></view> 
-    <image src='{{scene[0]}}' bindtap="previewImage"></image>
-  </view>
+  <view class='bottom-info'>APP目前仅支持安卓手机下载</view>
 </view>

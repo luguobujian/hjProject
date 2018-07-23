@@ -27,6 +27,7 @@ Page({
     longitude: "",
     currentCity: "",
     markers: [],
+    iconP: {},
 
     oneIsShow: 1,
     oneLogo: "",
@@ -250,7 +251,8 @@ Page({
       }
     })
   },
-  getQiYeData: function() {
+  
+  getQiYeData: function () {
     let that = this;
     wx.request({
       url: getApp().globalData.server + '/api/seller/qiye',
@@ -258,11 +260,60 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      success: function(res) {
+      success: function (res) {
         // console.log(res)
         that.setData({
           qiyeS: res.data.data
         })
+        let iconP = {};
+        for (let i = 0; i < res.data.data.length; i++) {
+          if (res.data.data[i].maplogo_image != "") {
+            wx.downloadFile({
+              url: getApp().globalData.server + res.data.data[i].maplogo_image,
+              success: function (ret) {
+                iconP[res.data.data[i].id] = ret.tempFilePath
+                that.setData({
+                  iconP: iconP
+                })
+                // console.log(that.data.iconP);
+              }
+            })
+          } else {
+            iconP[res.data.data[i].id] = ''
+          }
+        }
+      }
+    })
+  }, getQiYeData: function () {
+    let that = this;
+    wx.request({
+      url: getApp().globalData.server + '/api/seller/qiye',
+      method: 'post',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        // console.log(res)
+        that.setData({
+          qiyeS: res.data.data
+        })
+        let iconP = {};
+        for (let i = 0; i < res.data.data.length; i++) {
+          if (res.data.data[i].maplogo_image != "") {
+            wx.downloadFile({
+              url: getApp().globalData.server + res.data.data[i].maplogo_image,
+              success: function (ret) {
+                iconP[res.data.data[i].id] = ret.tempFilePath
+                that.setData({
+                  iconP: iconP
+                })
+                // console.log(that.data.iconP);
+              }
+            })
+          } else {
+            iconP[res.data.data[i].id] = ''
+          }
+        }
       }
     })
   },
@@ -283,36 +334,40 @@ Page({
         that.setData({
           sellerLocationData: res.data.data
         })
+        // console.log(that.data.iconP);
         let markers = [];
         for (let i = 0; i < res.data.data.length; i++) {
-          wx.downloadFile({
-            url: getApp().globalData.server + res.data.data[i].sellerqiye.maplogo_image, //仅为示例，并非真实的资源
-            success: function(ret) {
-              // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-              // console.log(res)
-              // console.log(ret)
-              markers.push({
-                id: res.data.data[i].id,
-                latitude: res.data.data[i].tx_y,
-                longitude: res.data.data[i].tx_x,
-                width: 40,
-                height: 40,
-                // title: res.data.data[i].name,
-                iconPath: ret.tempFilePath,
-                callout: {
-                  content: res.data.data[i].name,
-                  color: "#ffffff",
-                  fontSize: 12,
-                  padding: 4,
-                  borderRadius: 8,
-                  bgColor: '#ca0000',
-                }
-              })
-              that.setData({
-                markers
-              })
+          // console.log(res.data.data[i].sellerqiye.maplogo_image)
+          // wx.downloadFile({
+          //   url: getApp().globalData.server + res.data.data[i].sellerqiye.maplogo_image,
+          //   success: function(ret) {
+          // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+          // console.log(res)
+          // console.log(res.data.data[i].sellerqiye.id)
+          let id = res.data.data[i].sellerqiye.id
+          // console.log(that.data.iconP[id])
+          markers.push({
+            id: res.data.data[i].id,
+            latitude: res.data.data[i].tx_y,
+            longitude: res.data.data[i].tx_x,
+            width: 40,
+            height: 40,
+            // title: res.data.data[i].name,
+            iconPath: that.data.iconP[id],
+            callout: {
+              content: res.data.data[i].name,
+              color: "#ffffff",
+              fontSize: 12,
+              padding: 4,
+              borderRadius: 8,
+              bgColor: '#ca0000',
             }
           })
+          that.setData({
+            markers
+          })
+          //   }
+          // })
         }
       }
     })
@@ -379,7 +434,7 @@ Page({
       url: '../getApp/getApp'
     })
   },
-  openQiye: function (e) {
+  openQiye: function(e) {
     console.log(e);
     wx.navigateTo({
       url: '../qiYeOneInfo/qiYeOneInfo?id=' + e.currentTarget.dataset.id
@@ -402,7 +457,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 

@@ -6,7 +6,8 @@ Page({
    */
   data: {
     inputValue: "",
-    lastSearch: ""
+    lastSearch: "",
+    qiyeS: ""
   },
 
   /**
@@ -14,6 +15,7 @@ Page({
    */
   onLoad: function(options) {
     let that = this
+    that.getQiYeData();
     console.log(getCurrentPages());
     wx.getStorage({
       key: 'lastSearch',
@@ -36,6 +38,22 @@ Page({
   clearValue: function() {
     this.setData({
       inputValue: ""
+    })
+  },
+  getQiYeData: function () {
+    let that = this;
+    wx.request({
+      url: getApp().globalData.server + '/api/seller/qiye',
+      method: 'post',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        // console.log(res)
+        that.setData({
+          qiyeS: res.data.data
+        })
+      }
     })
   },
   goSearch: function() {

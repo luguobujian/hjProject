@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info: "请打开或下载惠军卡APP才可以领取惠军卡或扫描下方二维码关注公众号！",
+    info: "申领取惠军卡",
     scene: [getApp().globalData.server + '/xcx-1.png']
   },
 
@@ -16,11 +16,11 @@ Page({
     let that = this
     if (options.m == "l1") {
       that.setData({
-        info: "请打开或下载惠军卡APP完成找回密码或扫描下方二维码关注公众号！"
+        info: "完成找回密码"
       })
     } else if (options.m == "l2") {
       that.setData({
-        info: "请打开或下载惠军卡APP完成注册新用户或扫描下方二维码关注公众号！"
+        info: "申领取惠军卡"
       })
     }
   },
