@@ -1,0 +1,34 @@
+<!--pages/headlineOne/headlineOne.wxml-->
+<!-- <text>pages/headlineOne/headlineOne.wxml</text> -->
+<view class='container'>
+  <view>
+    <block wx:if="{{ isShowData }}" wx:for="{{mainDataList}}" wx:key="{{ item.id }}">
+      <view class="item-hot clearfix" data-id="{{ item.id }}" bindtap='goNewsInfo'>
+        <view class='fl item-con'>
+          <view class="item-tit">{{ item.title }}</view>
+          <view class="item-some-info">摘要：{{ item.desc }}</view>
+          <view class='item-btm clearfix'>
+            <!-- <view class='fl item-tag'>{{ item.cmscategory.title }}</view> -->
+            <view class='fl item-for'>{{ item.admin.username }}</view>
+            <view class='fl item-date'>{{ item.createtime_datetime }}</view>
+            <!-- <view class='fl item-time'>11:11</view> -->
+          </view>
+        </view>
+        <view class='fl image-view'>
+          <image src='{{ server + item.lit_image }}'></image>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{ mainDataList.length }}" class='btm-info'>
+      <view>已经到底了哦～</view>
+    </view>
+    <view wx:if="{{ !isShowData }}">
+      <view class='logo-view l'>
+        <image src='../../images/icon/get-app-logo.png'></image>
+      </view>
+      <view class='account'>
+        <view>未搜索到相关栏目资讯</view>
+      </view>
+    </view>
+  </view>
+</view>

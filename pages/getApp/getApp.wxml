@@ -1,0 +1,17 @@
+<!--pages/getApp/getApp.wxml-->
+<!-- <text>pages/getApp/getApp.wxml</text> -->
+<view class="container">
+  <view class='logo-view'>
+    <image src='../../images/icon/get-app-logo.png'></image>
+  </view>
+  <view class='account'>
+    <view>{{ info }}</view>
+  </view>
+  <view class='btn-view'>
+    <view>下载惠军APP</view>
+  </view>
+  <view class='bottom-view'>
+     <view></view> 
+    <image src='{{scene[0]}}' bindtap="previewImage"></image>
+  </view>
+</view>

@@ -1,0 +1,15 @@
+<!--pages/search/search.wxml-->
+<!-- <text>pages/search/search.wxml</text> -->
+<view class='container'>
+  <view class='top-view clearfix'>
+    <view class='input-view clearfix'>
+      <input class='fl' value='{{ inputValue }}' placeholder="搜索拥军爱心企业" bindinput="bindKeyInput" confirm-type="search"></input>
+      <view wx:if="{{ inputValue }}" class='fl cross' bindtap='clearValue'>×</view>
+    </view>
+    <view class='search-btn' bindtap='goSearch'>搜索</view>
+  </view>
+  <view wx:if="{{lastSearch}}" class='last-search-view'>
+    <view>上一次搜索:</view>
+    <view class='last-search-con' data-last-search="{{lastSearch}}" bindtap='lastGoSearch'>{{lastSearch}}</view>
+  </view>
+</view>

@@ -1,0 +1,116 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+  <view class='clearfix'>
+    <view class='address'>{{ currentCity }}</view>
+    <view class='input-view' bindtap='openSearchPage'>
+      <image class='search-icon' src="../../images/icon/search.png"></image>
+      <view>搜索拥军爱心企业</view>
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
+  <view class='slider-view'>
+    <swiper class='slider' indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" circular="true" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{ imgUrls }}" wx:key="{{ item.id }}">
+        <swiper-item>
+          <image src="{{ server + item.pic_image }}" class="slide-image" data-id="{{ item.article_id }}" bindtap="swipclick"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 头条 -->
+  <!-- <view class='top-view'>
+    <view class='top-logo-view'>
+      <image class='top-logo' src="../../images/icon/top.png"></image>
+    </view>
+    <view class='top-slider-view'>
+      <swiper class='top-slider' autoplay="{{autoplay}}" vertical="true" circular="true" next-margin="36rpx" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{mainDataList}}" wx:key="{{ item.id }}">
+          <swiper-item>
+            <view class='clearfix' bindtap='goHeadline'>
+              <view class='top-samll-tag'>{{ item.cmscategory.title }}</view>
+              <view class='top-small-tit'>{{ item.title }}</view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view> -->
+  <!-- 名气服务 -->
+  <view>
+    <view class='tit'>
+      <view class='perpendicular'>
+      </view>
+      社会化拥军服务
+    </view>
+    <view>
+      <view wx:for="{{ qiyeS }}" wx:key="{{item.id}}" data-id='{{item.id}}' bindtap='openQiye'>
+        <view class='merchant-item clearfix'>
+          <view class='fl merchant-logo'>
+            <image src='{{ server + item.logo_image }}'></image>
+          </view>
+          <view class='fr merchant-info'>
+            <view class='merchant-info-tit'>{{ item.name }}</view>
+            <view class='merchant-info-info'>{{ item.desc }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class=''>
+    <view class='tit'>
+      <view class='perpendicular'>
+      </view>
+      附近的拥军爱心企业
+      <view class='fr go-item' bindtap='openShopItemsPage'>
+       <image src='../../images/icon/list.png'></image> 
+        切换列表显示
+      </view>
+    </view>
+    <view class='map-view'>
+      <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}" bindmarkertap="markertap" show-location style="width: 100%; height: 300px;"></map>
+    </view>
+  </view>
+
+
+  <view hidden="{{ oneIsShow }}" class='item-one clearfix'>
+    <view class='fl item-one-logo' bindtap='openMap'>
+      <image src='{{ oneLogo }}'></image>
+    </view>
+    <view class='fl item-one-info'>
+      <view class='clearfix item-one-for' bindtap='openMap'>
+        <view class='fr'>{{ onejuli/1000 }}km</view>
+        <image class='fr' src='../../images/icon/go.png'></image>
+
+      </view>
+      <view class='item-one-tit' bindtap='openMap'>{{ oneId }}.{{ oneName }}</view>
+      <view class='item-one-add' bindtap='openMap'>{{ oneAddress }}</view>
+      <!-- <view class='item-one-call'>联系方式：{{ oneTel }}</view>  -->
+      <view class='item-one-sale' bindtap='openMap'>
+        <view class='fl'>惠军卡专享</view>
+        {{ oneDongTai }}
+      </view>
+      <view wx:if="{{ isLog == false }}" class='item-one-btn' bindtap='openGetApp'>领取惠军卡</view>
+    </view>
+  </view>
+  <view hidden="{{ oneIsShow }}" class='down' bindtap='setHideOne'>
+    <image src='../../images/icon/arrow.png'></image>
+  </view>
+  <!-- <view class='bottom-view'>
+     <view>领取您的惠军卡</view> 
+     <image src='{{scene[0]}}' bindtap="previewImage"></image> 
+    <button type="primary" size="20" open-type="contact">联系客服<text>(领取您的惠军卡)</text></button>
+  </view> -->
+</view>

@@ -1,0 +1,58 @@
+<!--pages/headline/headline.wxml-->
+<!-- <text>pages/headline/headline.wxml</text> -->
+
+
+<view class='container'>
+
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0">推荐</view>
+    <block wx:for="{{ menuList }}">
+      <view class="tab-item" data-category-id="{{ item.category_id }}" bindtap="swichNav">{{ item.cmscategory.title }}</view>
+    </block>
+
+    <!-- <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">热点</view>
+    <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">公益</view>
+    <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">动态</view>
+    <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">政策</view> -->
+    <!-- <view class="tab-item {{currentTab==5?'active':''}}" data-current="5" bindtap="swichNav">政策</view> -->
+  </scroll-view>
+
+  <view class="tab-content">
+    <!-- <swiper current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+      <swiper-item wx:for="{{[0,1,2,3,4]}}">
+        <scroll-view scroll-y="true" class="scoll-h"> -->
+    <view wx:if="{{ currentTab ==0 }}" class='slider-view'>
+      <swiper class='slider' indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" circular="true" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{ imgUrls }}" wx:key="{{ item.id }}">
+          <swiper-item>
+            <image src="{{ server + item.pic_image }}" class="slide-image" data-id="{{ item.article_id }}" bindtap="swipclick"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <block wx:for="{{mainDataList}}" wx:key="{{ item.id }}">
+      <view class="item-hot clearfix" data-id="{{ item.id }}" bindtap='goNewsInfo'>
+        <view class='fl item-con'>
+          <view class="item-tit">{{ item.title }}</view>
+          <view class="item-some-info">摘要：{{ item.desc }}</view>
+          <view class='item-btm clearfix'>
+            <view class='fl item-tag'>{{ item.cmscategory.title }}</view>
+            <view class='fl item-for'>{{ item.admin.username }}</view>
+            <view class='fl item-date'>{{ item.createtime_datetime }}</view>
+            <!-- <view class='fl item-time'>11:11</view> -->
+          </view>
+        </view>
+        <view class='fl image-view'>
+          <image src='{{ server + item.lit_image }}'></image>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{ mainDataList.length }}" class='btm-info'>
+      <view>已经到底了哦～</view>
+    </view>
+    <!-- </scroll-view>
+      </swiper-item>
+    </swiper> -->
+  </view>
+</view>

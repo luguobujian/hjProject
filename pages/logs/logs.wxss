@@ -1,0 +1,59 @@
+page {
+  height: 100%;
+  background-color: #f8f8f8;
+}
+.l-logo-view {
+  text-align: center;
+}
+
+.l-logo-view  image {
+  width: 332rpx;
+  height: 104rpx;
+  margin: 126rpx auto 0;
+}
+
+.account, .password {
+  font-size: 26rpx;
+  margin: 0 86rpx;
+  padding: 16rpx 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.account {
+  margin-top: 172rpx;
+}
+
+.password {
+  margin-top: 46rpx;
+  position: relative;
+}
+.sOrH {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  bottom: 22rpx;
+  right: 0rpx;
+  z-index: 999;
+}
+.btn-view {
+  margin-top: 70rpx;
+}
+
+.btn-view view {
+  height: 78rpx;
+  color: #fff;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 78rpx;
+  margin: 0 86rpx;
+  background-color: #be0303;
+  border-radius: 12rpx;
+}
+.bottom-view {
+  color: #989898;
+  font-size: 26rpx;
+   margin: 38rpx 86rpx 0;
+}
+.join {
+  color: #65B036;
+}

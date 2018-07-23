@@ -1,0 +1,24 @@
+<!--logs.wxml-->
+<view class="container">
+  <view class='l-logo-view'>
+    <image src='../../images/icon/main-logo.png'></image>
+  </view>
+  <view class='account'>
+    <input type='text' value='{{ your }}' placeholder="输入卡号/手机号" bindinput="getYour"></input>
+  </view>
+  <view class='password'>
+    <input type='{{ pOrT }}' value='{{ password }}' placeholder="输入密码" bindinput="getPassword"></input>
+    <image wx:if="{{ isShow == 0 }}" class="sOrH" src='../../images/icon/show.png' bindtap='seePad'></image>
+    <image wx:if="{{ isShow == 1 }}" class="sOrH" src='../../images/icon/hide.png' bindtap='seePad'></image>
+  </view>
+  <view class='btn-view' bindtap='logIn'>
+    <view>登录</view>
+  </view>
+  <view class='btn-view' bindtap='outLogIn' style='margin-top:30rpx;'>
+    <view style='background: #f2f2f2;color:#999;'>稍后再说</view>
+  </view>
+  <view class='clearfix bottom-view'>
+    <view class='fl' data-mark="l1" bindtap='openGetApp'>忘记密码</view> 
+    <view class='fr join' data-mark="l2" bindtap='openGetApp'>注册新用户</view>
+  </view>
+</view>

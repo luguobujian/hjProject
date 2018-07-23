@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/qiYeOneInfo/qiYeOneInfo",
+    "pages/shopitem/shopitem",
+    "pages/search/search",
+    "pages/searchShopItem/searchShopItem",
+    "pages/headline/headline",
+    "pages/headlineOne/headlineOne",
+    "pages/headlineOneInfo/headlineOneInfo",
+    "pages/me/me",
+    "pages/logs/logs",
+    "pages/getApp/getApp"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ca0000",
+    "navigationBarTitleText": "惠军卡 拥军就在您身边！",
+    "navigationBarTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#B4B4B4",
+    "selectedColor": "#A42117",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "社会化拥军服务",
+        "iconPath": "./images/icon/tabbar01.png",
+        "selectedIconPath": "./images/icon/tabbar01-act.png"
+      },
+  
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的惠军卡",
+        "iconPath": "./images/icon/tabbar03.png",
+        "selectedIconPath": "./images/icon/tabbar03-act.png"
+      }
+    ]
+  }
+}

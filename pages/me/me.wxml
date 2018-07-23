@@ -1,0 +1,54 @@
+<!--pages/me/me.wxml-->
+<!-- <text>pages/me/me.wxml</text> -->
+<view class='container'>
+  <view wx:if="{{ isShowCard }}" class='main-view'>
+    <image class="bg" src='../../images/bg01.png'></image>
+    <view class='c-logo-view'>
+      <image src='../../images/logo.png'></image>
+    </view>
+    <view class='qr-code-view'>
+      <image src='{{ QRCode }}'></image>
+    </view>
+    <view class='arrow-view'>
+      <image src='../../images/arrow.png'></image>
+    </view>
+    <view class='name-view'>
+      <view>{{ name }}</view>
+    </view>
+    <view wx:if="{{ group_id != '3' }}" class='avatar-view'>
+      <image src='{{ avartar }}'></image>
+    </view>
+    <view wx:if="{{ group_id == '3' }}" class='avatar-view01'>
+      <image src='{{ avartar }}'></image>
+    </view>
+    <view class='clearfix id-view' bindlongtap='copyTBL'>
+      <view class='fl'>{{ thisCard01 }}</view>
+      <view class='fl'>{{ thisCard02 }}</view>
+      <view class='fl'>{{ thisCard03 }}</view>
+      <view class='fl'>{{ thisCard04 }}</view>
+    </view>
+    <view class='click-view' bindtap='showUCard'></view>
+    <!-- <view class='clearfix small-tit'>
+      <view class='fl'>惠军工程</view>
+      <view class='fl ver'></view>
+      <view class='fl'>尊崇军人</view>
+      <view class='fl'>优待军属</view>
+    </view> -->
+  </view>
+  <view wx:if="{{ isShow }}" class='qrcord' bindtap='showUCard'>
+    <view class='con-view'>
+      <view class='qrcord-tit'>二维码</view>
+      <view class='qrcord-image-view'>
+        <image src='{{ QRCode }}'></image>
+      </view>
+    </view>
+  </view>
+   <view wx:if="{{ !isShowCard }}">
+    <view class='logo-view l'>
+      <image src='../../images/icon/get-app-logo.png'></image>
+    </view>
+    <view class='account'>
+      <view>身份审核通过后才可以查看哦!</view>
+    </view>
+  </view> 
+</view>

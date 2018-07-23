@@ -1,0 +1,76 @@
+/* pages/headlineOneInfo/headlineOneInfo.wxss */
+@import "../../wxParse/wxParse.wxss";
+
+page, .container {
+  min-height: 100%;
+  background-color: #fff;
+}
+
+.content-view {
+}
+
+image {
+  text-align: center;
+}
+
+.content-view .title {
+  color: #282828;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 52rpx;
+  text-align: center;
+  padding: 50rpx;
+}
+
+.view-box {
+  margin: 30rpx;
+  border: 1rpx dashed #999;
+}
+
+.desc-view {
+  background-color: #fff;
+  border-top: 16rpx solid #ca0000;
+  border-radius: 6rpx;
+}
+
+.desc-view view:first-child {
+  text-align: left;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  margin: 0 36rpx;
+}
+
+.desc {
+  font-size: 28rpx;
+  line-height: 48rpx;
+  margin: 0 36rpx 36rpx;
+}
+
+.content {
+  font-size: 28rpx;
+  line-height: 48rpx;
+  margin: 68rpx 30rpx 0 30rpx;
+}
+
+.content view {
+  margin-bottom: 60rpx;
+}
+
+.s-info {
+  color: #999;
+  font-size: 22rpx;
+}
+
+.s-info view {
+  margin-left: 60rpx;
+}
+
+.btn {
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+  background-color: #a70000;
+  /* padding: 24rpx 0; */
+  border-radius: 10rpx;
+  margin: 32rpx;
+}

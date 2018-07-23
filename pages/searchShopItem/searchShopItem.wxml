@@ -1,0 +1,34 @@
+<!--pages/shopitem/shopitem.wxml-->
+<view>
+  <view wx:if="{{ isShowData }}" wx:for="{{ sellerLocationData }}" wx:key="{{ item.id }}" class='item-one clearfix'>
+    <view class='fl item-one-logo'>
+      <image src='{{ server + item.sellerqiye.logo_image }}'></image>
+    </view>
+    <view class='fl item-one-info'>
+      <view class='clearfix item-one-for' data-id="{{ item.id }}" bindtap='openMap'>
+        <view class='fr'>{{ item.juli }}m</view>
+        <image class='fr' src='../../images/icon/go.png'></image>
+
+      </view>
+      <view class='item-one-tit'>{{ index + 1 }}.{{ item.name }}</view>
+      <view class='item-one-add'>{{ item.address }}</view>
+      <view class='item-one-call'>联系方式：{{ item.mobile }}</view>
+      <view class='item-one-sale'>
+        <view class='fl'>惠军卡专享</view>
+        {{ item.dongtai }}
+      </view>
+      <view wx:if="{{ isLog == false }}" class='item-one-btn' bindtap='openGetApp'>领取惠军卡</view>
+    </view>
+  </view>
+  <view wx:if="{{ sellerLocationData.length }}" class='btm-info'>
+    <view>已经到底了哦～</view>
+  </view>
+  <view wx:if="{{ !isShowData }}">
+    <view class='logo-view l'>
+      <image src='../../images/icon/get-app-logo.png'></image>
+    </view>
+    <view class='account'>
+      <view>暂时没有符合条件的拥军爱心企业，请重新输入哦～</view>
+    </view>
+  </view>
+</view>

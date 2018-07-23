@@ -1,0 +1,26 @@
+<!--pages/qiYeOneInfo/qiYeOneInfo.wxml-->
+<!-- <text>pages/qiYeOneInfo/qiYeOneInfo.wxml</text> -->
+<view class='container'>
+  <view class='content-view'>
+    <view class='title'>{{ mainData.name }}</view>
+     <view wx:if="{{ mainData.desc }}" class='view-box'>
+      <view class="desc-view">
+        <view>简介</view>
+        <view class='desc'>{{ mainData.desc }}</view>
+      </view>
+    </view> 
+
+    <import src="../../wxParse/wxParse.wxml" />
+    <!-- <web-view src="https://hj.05570.cn/hao360.html"></web-view> -->
+    <view class="wxParse article content">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <!-- <view class='s-info clearfix'>
+      <view class='fl s-info01'>{{ mainData.admin.username }}</view>
+      <view class='fl s-info02'>{{ mainData.createtime_datetime }}</view>
+       <view class='fl s-info03'>{{ mainData.admin.username }}</view> 
+    </view>
+     <button class='btn share user-motto' id="shareBtn" open-type="share" hover-class="other-button-hover">
+      {{motto}}</button>  -->
+  </view>
+</view>
