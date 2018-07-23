@@ -10,7 +10,7 @@
   </view>
   <view class='last-search-view'>
     <view>名企搜索:</view>
-    <view wx:for='{{ qiyeS }}' wx:key='{{ item.id }}' class='last-search-con' data-last-search="{{lastSearch}}" bindtap='lastGoSearch'>{{item.name}}</view>
+    <view wx:for='{{ qiyeS }}' wx:key='{{ item.id }}' class='last-search-con' data-last-search="{{item.name}}" bindtap='lastGoSearch'>{{item.name}}</view>
   </view>
   <view wx:if="{{lastSearch}}" class='last-search-view'>
     <view>上一次搜索:</view>

@@ -6,13 +6,13 @@
     </view>
     <view class='fl item-one-info'>
       <view class='clearfix item-one-for' data-id="{{ item.id }}" bindtap='openMap'>
-        <view class='fr'>{{ item.juli }}m</view>
+        <view class='fr'>{{ item.juli/1000 }}km</view>
         <image class='fr' src='../../images/icon/go.png'></image>
 
       </view>
       <view class='item-one-tit'>{{ index + 1 }}.{{ item.name }}</view>
       <view class='item-one-add'>{{ item.address }}</view>
-      <view class='item-one-call'>联系方式：{{ item.mobile }}</view>
+      <!-- <view class='item-one-call'>联系方式：{{ item.mobile }}</view> -->
       <view class='item-one-sale'>
         <view class='fl'>惠军卡专享</view>
         {{ item.dongtai }}

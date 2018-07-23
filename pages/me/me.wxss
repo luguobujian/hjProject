@@ -12,6 +12,7 @@ page, .container {
 
 .main-view image {
   width: 100%;
+   height: 424rpx; 
 }
 
 .c-logo-view image {
@@ -77,16 +78,18 @@ page, .container {
 }
 
 .id-view {
+  width: 90%;
   position: absolute;
   top: 246rpx;
   left: 44rpx;
 }
 
 .id-view view {
+  width: 25%;
   color: #f8ab00;
   font-size: 36rpx;
   letter-spacing: 17rpx;
-  margin-left: 13rpx;
+  /* margin-left: 13rpx; */
   text-shadow: #fff092 -1rpx -0.3rpx 0;
 }
 

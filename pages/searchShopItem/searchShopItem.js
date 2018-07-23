@@ -149,7 +149,7 @@ Page({
       },
       success: function(res) {
         console.log(res.data.data)
-        if (res.data.data.length) {
+        if (res.data.data) {
           that.setData({
             sellerLocationData: res.data.data,
             isShowData: true

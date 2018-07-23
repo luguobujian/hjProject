@@ -60,6 +60,7 @@ Page({
     this.setData({
       lastSearch: this.data.inputValue
     })
+    console.log(this.data.inputValue)
     wx.navigateTo({
       url: '../searchShopItem/searchShopItem?search=' + this.data.inputValue
     })
