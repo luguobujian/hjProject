@@ -350,8 +350,8 @@ Page({
             id: res.data.data[i].id,
             latitude: res.data.data[i].tx_y,
             longitude: res.data.data[i].tx_x,
-            width: 40,
-            height: 40,
+            // width: 30,
+            // height: 30,
             // title: res.data.data[i].name,
             iconPath: that.data.iconP[id],
             callout: {
