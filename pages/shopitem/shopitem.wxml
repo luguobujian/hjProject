@@ -23,9 +23,9 @@
   <!-- <loading hidden="{{loadingHidden}}">
     加载中...
   </loading> -->
-  <view wx:if="{{ sellerLocationData.length }}" class='btm-info'>
+  <!-- <view wx:if="{{ sellerLocationData.length }}" class='btm-info'>
     <view>已经到底了哦～</view>
-  </view>
+  </view> -->
   <view wx:if="{{ !isShowData }}">
     <view class='logo-view l'>
       <image src='../../images/icon/get-app-logo.png'></image>

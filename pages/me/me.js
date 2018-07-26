@@ -26,88 +26,88 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let that = this;
-    wx.getStorage({
-      key: 'log',
-      success: function(res) {
-        if (res.data.msg == "登录成功") {
-          wx.request({
-            url: getApp().globalData.server + '/api/user/info',
-            method: 'post',
-            header: {
-              'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-              token: res.data.data.userinfo.token
-            },
-            success: function(res) {
-              console.log(res)
-              if (res.data.data) {
-                if (res.data.data.group_id == 3) {
-                  that.setData({
-                    name: '军人依法优先',
-                    avartar: '../../images/card_logo.png',                  
-                  });
-                } else {
-                  that.setData({                  
-                    name: res.data.data.name,                  
-                    avartar: getApp().globalData.server + res.data.data.avatar,                    
-                  });
-                } 
-                that.setData({
-                  isLog: true,
-                  // name: res.data.data.name,
-                  group_id: res.data.data.group_id,
-                  thisCard: res.data.data.ucard,
-                  // avartar: getApp().globalData.server + res.data.data.avatar,
-                  thisCard_logo: getApp().globalData.server + res.data.data.idcard1_image,
-                  thisCard_img: getApp().globalData.server + res.data.data.idcard2_image,
-                  thisCard01: res.data.data.ucard.substring(0, 4),
-                  thisCard02: res.data.data.ucard.substring(4, 8),
-                  thisCard03: res.data.data.ucard.substring(8, 12),
-                  thisCard04: res.data.data.ucard.substring(12, 16),
-                  token: res.data.data.token,
-                });      
-                if (res.data.data.shenhestatus == 4) {
-                  that.setData({
-                    isShowCard: true
-                  })
-                } else {
-                  that.setData({
-                    isShowCard: false
-                  })
-                }
-                that.getQRCode();
-              } else {
-                wx.redirectTo({
-                  url: '../logs/logs'
-                })
-              }
-            },
-            fail: function(res) {
-              wx.redirectTo({
-                url: '../logs/logs'
-              })
-            }
-          })
-        } else {
-          that.setData({
-            isLog: false
-          })
-          wx.redirectTo({
-            url: '../logs/logs'
-          })
-        }
-      },
-      fail: function(res) {
-        that.setData({
-          isLog: false
-        })
-        wx.redirectTo({
-          url: '../logs/logs'
-        })
-      }
-    })
+    // let that = this;
+    // wx.getStorage({
+    //   key: 'log',
+    //   success: function(res) {
+    //     if (res.data.msg == "登录成功") {
+    //       wx.request({
+    //         url: getApp().globalData.server + '/api/user/info',
+    //         method: 'post',
+    //         header: {
+    //           'content-type': 'application/x-www-form-urlencoded'
+    //         },
+    //         data: {
+    //           token: res.data.data.userinfo.token
+    //         },
+    //         success: function(res) {
+    //           console.log(res)
+    //           if (res.data.data) {
+    //             if (res.data.data.group_id == 3) {
+    //               that.setData({
+    //                 name: '军人依法优先',
+    //                 avartar: '../../images/card_logo.png',                  
+    //               });
+    //             } else {
+    //               that.setData({                  
+    //                 name: res.data.data.name,                  
+    //                 avartar: getApp().globalData.server + res.data.data.avatar,                    
+    //               });
+    //             } 
+    //             that.setData({
+    //               isLog: true,
+    //               // name: res.data.data.name,
+    //               group_id: res.data.data.group_id,
+    //               thisCard: res.data.data.ucard,
+    //               // avartar: getApp().globalData.server + res.data.data.avatar,
+    //               thisCard_logo: getApp().globalData.server + res.data.data.idcard1_image,
+    //               thisCard_img: getApp().globalData.server + res.data.data.idcard2_image,
+    //               thisCard01: res.data.data.ucard.substring(0, 4),
+    //               thisCard02: res.data.data.ucard.substring(4, 8),
+    //               thisCard03: res.data.data.ucard.substring(8, 12),
+    //               thisCard04: res.data.data.ucard.substring(12, 16),
+    //               token: res.data.data.token,
+    //             });      
+    //             if (res.data.data.shenhestatus == 4) {
+    //               that.setData({
+    //                 isShowCard: true
+    //               })
+    //             } else {
+    //               that.setData({
+    //                 isShowCard: false
+    //               })
+    //             }
+    //             that.getQRCode();
+    //           } else {
+    //             wx.redirectTo({
+    //               url: '../logs/logs'
+    //             })
+    //           }
+    //         },
+    //         fail: function(res) {
+    //           wx.redirectTo({
+    //             url: '../logs/logs'
+    //           })
+    //         }
+    //       })
+    //     } else {
+    //       that.setData({
+    //         isLog: false
+    //       })
+    //       wx.redirectTo({
+    //         url: '../logs/logs'
+    //       })
+    //     }
+    //   },
+    //   fail: function(res) {
+    //     that.setData({
+    //       isLog: false
+    //     })
+    //     wx.redirectTo({
+    //       url: '../logs/logs'
+    //     })
+    //   }
+    // })
   },
   showUCard: function() {
     if (this.data.isShow) {
@@ -146,6 +146,12 @@ Page({
         // })
       }
     });
+  },
+  outLogIn: function() {
+    wx.clearStorage();
+    wx.switchTab({
+      url: '../index/index'
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -241,7 +247,7 @@ Page({
       }
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面隐藏
    */

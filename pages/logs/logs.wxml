@@ -15,7 +15,7 @@
     <view>登录</view>
   </view>
   <view class='btn-view' bindtap='outLogIn' style='margin-top:30rpx;'>
-    <view style='background: #f2f2f2;color:#999;'>稍后再说</view>
+    <view style='background: #f2f2f2;color:#999;'>稍后注册</view>
   </view>
   <view class='clearfix bottom-view'>
     <view class='fl' data-mark="l1" bindtap='openGetApp'>忘记密码</view> 

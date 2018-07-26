@@ -73,8 +73,8 @@ Page({
     // }
     let that = this;
     that.getBannerData();
-    that.getQiYeData();
     that.getHotData();
+    that.getQiYeData();
 
     wx.getStorage({
         key: 'log',
@@ -182,6 +182,7 @@ Page({
     let that = this
     wx.request({
       url: 'https://api.map.baidu.com/geocoder/v2/?ak=oZKOA2lVH1iDGQr1RobpwF9Ob5dG8Rdi&location=' + latitude + ',' + longitude + '&output=json',
+
       success: function(res) {
         let city = res.data.result.addressComponent.city;
         that.setData({
@@ -251,8 +252,7 @@ Page({
       }
     })
   },
-  
-  getQiYeData: function () {
+  getQiYeData: function() {
     let that = this;
     wx.request({
       url: getApp().globalData.server + '/api/seller/qiye',
@@ -260,7 +260,7 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      success: function (res) {
+      success: function(res) {
         // console.log(res)
         that.setData({
           qiyeS: res.data.data
@@ -270,39 +270,7 @@ Page({
           if (res.data.data[i].maplogo_image != "") {
             wx.downloadFile({
               url: getApp().globalData.server + res.data.data[i].maplogo_image,
-              success: function (ret) {
-                iconP[res.data.data[i].id] = ret.tempFilePath
-                that.setData({
-                  iconP: iconP
-                })
-                // console.log(that.data.iconP);
-              }
-            })
-          } else {
-            iconP[res.data.data[i].id] = ''
-          }
-        }
-      }
-    })
-  }, getQiYeData: function () {
-    let that = this;
-    wx.request({
-      url: getApp().globalData.server + '/api/seller/qiye',
-      method: 'post',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        // console.log(res)
-        that.setData({
-          qiyeS: res.data.data
-        })
-        let iconP = {};
-        for (let i = 0; i < res.data.data.length; i++) {
-          if (res.data.data[i].maplogo_image != "") {
-            wx.downloadFile({
-              url: getApp().globalData.server + res.data.data[i].maplogo_image,
-              success: function (ret) {
+              success: function(ret) {
                 iconP[res.data.data[i].id] = ret.tempFilePath
                 that.setData({
                   iconP: iconP
@@ -350,8 +318,8 @@ Page({
             id: res.data.data[i].id,
             latitude: res.data.data[i].tx_y,
             longitude: res.data.data[i].tx_x,
-            // width: 30,
-            // height: 30,
+            width: 30,
+            height: 30,
             // title: res.data.data[i].name,
             iconPath: that.data.iconP[id],
             callout: {
@@ -457,6 +425,10 @@ Page({
   /**
    * 用户点击右上角分享
    */
+  onShow: function() {
+    let that = this;
+    that.getQiYeData();
+  },
   onShareAppMessage: function() {
 
   }

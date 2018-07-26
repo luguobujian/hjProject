@@ -9,6 +9,7 @@ Page({
     isShow: false,
     loadingHidden: false,
     server: getApp().globalData.server,
+    limit: 8,
     sellerLocationData: '',
     oneLogo: "",
     oneName: "",
@@ -21,7 +22,9 @@ Page({
     latitude: "",
     longitude: "",
     name: "",
-    address: ""
+    address: "",
+    x: '',
+    y: ''
   },
 
   /**
@@ -29,6 +32,10 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
+    that.setData({
+      x: options.x,
+      y: options.y
+    })
     that.getSellerData(options.y, options.x)
     wx.getStorage({
       key: 'log',
@@ -83,7 +90,9 @@ Page({
       },
       data: {
         x,
-        y
+        y,
+        page: "1",
+        limit: that.data.limit,
       },
       success: function(res) {
         console.log(res.data)
@@ -177,7 +186,47 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    //console.log("上拉加载")
+    console.log("上拉加载")
+    let that = this;
+    let limit = that.data.limit + 8;
+    wx.request({
+      url: getApp().globalData.server + '/api/seller/nearby_seller',
+      method: 'post',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        x: that.data.x,
+        y: that.data.y,
+        page: "1",
+        limit,
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          loadingHidden: true,
+          limit
+        })
+        console.log(that.data.loadingHidden)
+        if (res.data.data.length) {
+          that.setData({
+            sellerLocationData: res.data.data,
+            isShowData: true
+          })
+        } else {
+          that.setData({
+            isShowData: false
+          })
+        }
+
+
+      },
+      fail: function () {
+        that.setData({
+          loadingHidden: true
+        })
+      }
+    })
   },
 
   /**

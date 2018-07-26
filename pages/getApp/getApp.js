@@ -6,7 +6,7 @@ Page({
    */
   data: {
     info: "申领取惠军卡",
-    scene: [getApp().globalData.server + '/xcx-1.png']
+    scene: [getApp().globalData.server + '/xcx-1.png?' + Math.random() / 9999]
   },
 
   /**
@@ -25,9 +25,13 @@ Page({
     }
   },
   previewImage: function (e) {
+    let that = this;
     wx.previewImage({
-      current: this.data.scene[0],
+      // current: this.data.scene[0],
       urls: this.data.scene,
+      success: function (res) {
+        // alert(that.data.scene)
+      },
       fail: function (res) {
         console.log(res)
       }

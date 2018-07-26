@@ -1,6 +1,6 @@
 <!--pages/me/me.wxml-->
 <!-- <text>pages/me/me.wxml</text> -->
-<view class='container'>
+<view class='container' wx:if='{{ isLog }}'>
   <view wx:if="{{ isShowCard }}" class='main-view'>
     <image class="bg" src='../../images/bg01.png'></image>
     <view class='c-logo-view'>
@@ -27,6 +27,9 @@
       <view class='fl'>{{ thisCard03 }}</view>
       <view class='fl'>{{ thisCard04 }}</view>
     </view>
+    <view class='btn-view' bindtap='outLogIn'>
+      <view style=''>退出</view>
+    </view>
     <view class='click-view' bindtap='showUCard'></view>
     <!-- <view class='clearfix small-tit'>
       <view class='fl'>惠军工程</view>
@@ -43,12 +46,12 @@
       </view>
     </view>
   </view>
-   <view wx:if="{{ !isShowCard }}">
+  <view wx:if="{{ !isShowCard }}">
     <view class='logo-view l'>
       <image src='../../images/icon/get-app-logo.png'></image>
     </view>
     <view class='account'>
-      <view>身份审核通过后才可以查看哦!</view>
+      <view>您提交的申请正在审核中，请耐心等待，我们将在24小时内完成审核,并将结果及时发送到您手机上,请注意查收！</view>
     </view>
-  </view> 
+  </view>
 </view>
