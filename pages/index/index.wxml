@@ -79,8 +79,9 @@
         切换列表显示
       </view>
     </view>
+    <view class='s-tit'>地图仅显示20公里内服务网点</view>
     <view class='map-view'>
-      <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="11" markers="{{markers}}" bindmarkertap="markertap" show-location style="width: 100%; height: 300px;"></map>
+      <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="12" markers="{{markers}}" bindmarkertap="markertap" bindregionchange = "regionChange" show-location style="width: 100%; height: 300px;"></map>
     </view>
   </view>
 
@@ -93,9 +94,8 @@
       <view class='clearfix item-one-for' bindtap='openMap'>
         <view class='fr'>{{ onejuli/1000 }}km</view>
         <image class='fr' src='../../images/icon/go.png'></image>
-
       </view>
-      <view class='item-one-tit' bindtap='openMap'>{{ oneId }}.{{ oneName }}</view>
+      <view class='item-one-tit' bindtap='openMap'>{{ oneName }}</view>
       <view class='item-one-add' bindtap='openMap'>{{ oneAddress }}</view>
       <!-- <view class='item-one-call'>联系方式：{{ oneTel }}</view>  -->
       <view class='item-one-sale' bindtap='openMap'>
@@ -109,8 +109,8 @@
     <image src='../../images/icon/arrow.png'></image>
   </view>
    <view class='bottom-view'>
-     <view>领取您的惠军卡</view> 
-     <image src='{{scene[0]}}' bindtap="previewImage"></image> 
+     <!-- <view>领取您的惠军卡</view>  -->
+     <image src='../../images/btm.png' bindtap="previewImage"></image> 
     <!-- <button type="primary" size="20" open-type="contact">联系客服<text>(领取您的惠军卡)</text></button> -->
   </view> 
 </view>

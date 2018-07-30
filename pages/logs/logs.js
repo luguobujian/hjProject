@@ -36,6 +36,7 @@ Page({
         pOrT: "password"
       })
     }
+    console.log(this.data.pOrT)
   },
   logIn: function() {
     // wx.navigateTo({
@@ -111,5 +112,11 @@ Page({
     wx.navigateTo({
       url: '../getApp/getApp?m='+e.currentTarget.dataset.mark
     })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

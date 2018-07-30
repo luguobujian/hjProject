@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info: "申领取惠军卡",
+    info: "申办惠军卡",
     scene: [getApp().globalData.server + '/xcx-1.png?' + Math.random() / 9999]
   },
 
@@ -20,7 +20,7 @@ Page({
       })
     } else if (options.m == "l2") {
       that.setData({
-        info: "申领取惠军卡"
+        info: "申办惠军卡"
       })
     }
   },

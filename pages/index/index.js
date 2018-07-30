@@ -45,6 +45,7 @@ Page({
 
 
   onLoad: function() {
+    this.mapCtx = wx.createMapContext('map')
     // if (app.globalData.userInfo) {
     //   this.setData({
     //     userInfo: app.globalData.userInfo,
@@ -298,29 +299,22 @@ Page({
         y
       },
       success: function(res) {
-        // console.log(res.data)
         that.setData({
           sellerLocationData: res.data.data
         })
-        // console.log(that.data.iconP);
         let markers = [];
         for (let i = 0; i < res.data.data.length; i++) {
           // console.log(res.data.data[i].sellerqiye.maplogo_image)
           // wx.downloadFile({
           //   url: getApp().globalData.server + res.data.data[i].sellerqiye.maplogo_image,
           //   success: function(ret) {
-          // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-          // console.log(res)
-          // console.log(res.data.data[i].sellerqiye.id)
           let id = res.data.data[i].sellerqiye.id
-          // console.log(that.data.iconP[id])
           markers.push({
             id: res.data.data[i].id,
             latitude: res.data.data[i].tx_y,
             longitude: res.data.data[i].tx_x,
             width: 30,
             height: 30,
-            // title: res.data.data[i].name,
             iconPath: that.data.iconP[id],
             callout: {
               content: res.data.data[i].name,
@@ -334,6 +328,7 @@ Page({
           that.setData({
             markers
           })
+          console.log(markers)
           //   }
           // })
         }
@@ -361,6 +356,27 @@ Page({
       }
     }
 
+  },
+  regionChange: function() {
+    let that = this;
+    that.mapCtx.getCenterLocation({
+      success: function(res) {
+        // console.log(res.longitude)
+        // console.log(res.latitude)
+
+        // console.log(that.data.latitude)
+        // console.log(that.data.longitude)
+        let ll = that.getFlatternDistance(that.data.latitude, that.data.longitude, res.latitude, res.longitude)
+        console.log(ll)
+        if (ll > 20000) {
+          that.getSellerData(res.latitude, res.longitude)
+          that.setData({
+            latitude: res.latitude,
+            longitude: res.longitude
+          })
+        }
+      }
+    })
   },
   openSearchPage: () => {
     wx.navigateTo({
@@ -421,6 +437,59 @@ Page({
         console.log(res);
       }
     })
+  },
+
+
+
+  getRad: function(d) {
+    var PI = Math.PI;
+    return d * PI / 180.0;
+  },
+  getFlatternDistance: function(lat1, lng1, lat2, lng2) {
+    var EARTH_RADIUS = 6378137.0; //单位M
+    // console.log(lat1)
+    // console.log(lng1)
+    // console.log(lat2)
+    // console.log(lng2)
+
+
+    var f = this.getRad((lat1 - (-lat2)) / 2);
+    var g = this.getRad((lat1 - lat2) / 2);
+    var l = this.getRad((lng1 - lng2) / 2);
+
+    // console.log(f)
+    // console.log(g)
+    // console.log(l)
+
+    var sg = Math.sin(g);
+    var sl = Math.sin(l);
+    var sf = Math.sin(f);
+
+    var s, c, w, r, d, h1, h2;
+    var a = EARTH_RADIUS;
+    var fl = 1 / 298.257;
+
+    sg = sg * sg;
+    sl = sl * sl;
+    sf = sf * sf;
+
+    s = sg * (1 - sl) + (1 - sf) * sl;
+    c = (1 - sg) * (1 - sl) + sf * sl;
+
+    w = Math.atan(Math.sqrt(s / c));
+    r = Math.sqrt(s * c) / w;
+    d = 2 * w * a;
+    h1 = (3 * r - 1) / 2 / c;
+    h2 = (3 * r + 1) / 2 / s;
+
+    // console.log(w)
+    // console.log(r)
+    // console.log(d)
+    // console.log(h1)
+    // console.log(h2)
+
+
+    return d * (1 + fl * (h1 * sf * (1 - sg) - h2 * (1 - sf) * sg));
   },
   /**
    * 用户点击右上角分享

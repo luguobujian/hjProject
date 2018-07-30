@@ -7,9 +7,9 @@
     <input type='text' value='{{ your }}' placeholder="输入卡号/手机号" bindinput="getYour"></input>
   </view>
   <view class='password'>
-    <input type='{{ pOrT }}' value='{{ password }}' placeholder="输入密码" bindinput="getPassword"></input>
-    <image wx:if="{{ isShow == 0 }}" class="sOrH" src='../../images/icon/show.png' bindtap='seePad'></image>
-    <image wx:if="{{ isShow == 1 }}" class="sOrH" src='../../images/icon/hide.png' bindtap='seePad'></image>
+    <input password='{{ !isShow }}' value='{{ password }}' placeholder="输入密码" bindinput="getPassword"></input>
+    <image wx:if="{{ isShow == 0 }}" class="sOrH" src='../../images/icon/hide.png' bindtap='seePad'></image>
+    <image wx:if="{{ isShow == 1 }}" class="sOrH" src='../../images/icon/show.png' bindtap='seePad'></image>
   </view>
   <view class='btn-view' bindtap='logIn'>
     <view>登录</view>

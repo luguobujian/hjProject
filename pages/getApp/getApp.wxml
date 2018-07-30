@@ -8,8 +8,8 @@
     <image src='{{scene[0]}}' bindtap="previewImage"></image>
   </view>
   <view class='account'>
-    <view style='font-weight: bold;'>长按识别二维码并关注【惠军工程】公众号</view>
-    <view class='small-in'>微信公众号{{ info }}</view>
+    <view style='font-weight: bold;'>点击二维码图片发送到微信，识别关注【惠军工程】公众号，即可 {{ info }}。</view>
+    <!-- <view class='small-in'>微信公众号{{ info }}</view> -->
   </view>
   <view class='btn-view'>
     <view>下载惠军APP</view>

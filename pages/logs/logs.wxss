@@ -30,8 +30,9 @@ page {
 .sOrH {
   width: 40rpx;
   height: 40rpx;
+  padding: 20rpx;
   position: absolute;
-  bottom: 22rpx;
+  bottom: 2rpx;
   right: 0rpx;
   z-index: 999;
 }

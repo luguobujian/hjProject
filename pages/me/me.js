@@ -192,28 +192,28 @@ Page({
                     avartar: getApp().globalData.server + res.data.data.avatar,
                   });
                 }
-                that.setData({
-                  isLog: true,
-                  // name: res.data.data.name,
-                  group_id: res.data.data.group_id,
-                  thisCard: res.data.data.ucard,
-                  // avartar: getApp().globalData.server + res.data.data.avatar,
-                  thisCard_logo: getApp().globalData.server + res.data.data.idcard1_image,
-                  thisCard_img: getApp().globalData.server + res.data.data.idcard2_image,
-                  thisCard01: res.data.data.ucard.substring(0, 4),
-                  thisCard02: res.data.data.ucard.substring(4, 8),
-                  thisCard03: res.data.data.ucard.substring(8, 12),
-                  thisCard04: res.data.data.ucard.substring(12, 16),
-                  token: res.data.data.token,
-                });
                 if (res.data.data.shenhestatus == 4) {
                   that.setData({
-                    isShowCard: true
+                    isShowCard: true,
+                    isLog: true,
+                    // name: res.data.data.name,
+                    group_id: res.data.data.group_id,
+                    thisCard: res.data.data.ucard,
+                    // avartar: getApp().globalData.server + res.data.data.avatar,
+                    thisCard_logo: getApp().globalData.server + res.data.data.idcard1_image,
+                    thisCard_img: getApp().globalData.server + res.data.data.idcard2_image,
+                    thisCard01: res.data.data.ucard.substring(0, 4),
+                    thisCard02: res.data.data.ucard.substring(4, 8),
+                    thisCard03: res.data.data.ucard.substring(8, 12),
+                    thisCard04: res.data.data.ucard.substring(12, 16),
+                    token: res.data.data.token,
                   })
                 } else {
                   that.setData({
-                    isShowCard: false
+                    isShowCard: false,
+                    isLog: true,
                   })
+                  console.log(that.data.isShowCard)
                 }
                 that.getQRCode();
               } else {
