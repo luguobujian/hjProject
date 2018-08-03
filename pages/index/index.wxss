@@ -151,7 +151,7 @@
   color: #666;
   font-size: 24rpx;
   margin-top: 10rpx;
-  margin-left:54rpx;
+  margin-left: 54rpx;
 }
 
 .perpendicular {
@@ -218,6 +218,28 @@
   margin-bottom: 18rpx;
   background-color: #f8f8f8;
   box-shadow: 2px 0 5px #dedede;
+  position: relative;
+}
+
+.map-img, .map-img01 {
+  width: 46rpx;
+  height: 46rpx;
+  padding: 8rpx;
+  background-color: #fff;
+  border: 1rpx solid #dedede;
+  border-radius: 6rpx;
+}
+
+.map-img {
+  position: absolute;
+  left: 24rpx;
+  bottom: 130rpx;
+}
+
+.map-img01 {
+  position: absolute;
+  left: 24rpx;
+  bottom: 50rpx;
 }
 
 .item-one {

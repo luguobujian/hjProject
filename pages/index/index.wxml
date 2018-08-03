@@ -75,14 +75,22 @@
       </view>
       附近的拥军爱心企业
       <view class='fr go-item' bindtap='openShopItemsPage'>
-       <image src='../../images/icon/list.png'></image> 
+        <image src='../../images/icon/list.png'></image>
         切换列表显示
       </view>
     </view>
     <view class='s-tit'>地图仅显示20公里内服务网点</view>
     <view class='map-view'>
-      <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="12" markers="{{markers}}" bindmarkertap="markertap" bindregionchange = "regionChange" show-location style="width: 100%; height: 300px;"></map>
+      <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="12" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionChange" show-location style="width: 100%; height: 300px;">
+        <!-- <cover-view class="play" > -->
+          <cover-image class="map-img" src="../../images/icon/refresh.png" bindtap="play" />
+        <!-- </cover-view> -->
+        <!-- <cover-view class="play" > -->
+          <cover-image class="map-img01" src="../../images/icon/gps.png" bindtap="gps" />
+        <!-- </cover-view> -->
+      </map>
     </view>
+    <!-- <image src='{{ iconPone }}'></image> -->
   </view>
 
 
@@ -108,9 +116,9 @@
   <view hidden="{{ oneIsShow }}" class='down' bindtap='setHideOne'>
     <image src='../../images/icon/arrow.png'></image>
   </view>
-   <view class='bottom-view'>
-     <!-- <view>领取您的惠军卡</view>  -->
-     <image src='../../images/btm.png' bindtap="previewImage"></image> 
+  <view class='bottom-view'>
+    <!-- <view>领取您的惠军卡</view>  -->
+    <image src='../../images/btm.png' bindtap="previewImage"></image>
     <!-- <button type="primary" size="20" open-type="contact">联系客服<text>(领取您的惠军卡)</text></button> -->
-  </view> 
+  </view>
 </view>

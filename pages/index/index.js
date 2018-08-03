@@ -28,6 +28,7 @@ Page({
     currentCity: "",
     markers: [],
     iconP: {},
+    iconPone: '',
 
     oneIsShow: 1,
     oneLogo: "",
@@ -159,8 +160,6 @@ Page({
           }
         }
       })
-
-
   },
   getLocation: (that) => {
     wx.getLocation({
@@ -262,7 +261,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        // console.log(res)
+        console.log(res)
         that.setData({
           qiyeS: res.data.data
         })
@@ -276,7 +275,10 @@ Page({
                 that.setData({
                   iconP: iconP
                 })
-                // console.log(that.data.iconP);
+                // console.log(iconP);
+              },
+              fail: function(err) {
+                console.log(err);
               }
             })
           } else {
@@ -304,11 +306,30 @@ Page({
         })
         let markers = [];
         for (let i = 0; i < res.data.data.length; i++) {
-          // console.log(res.data.data[i].sellerqiye.maplogo_image)
+          // console.log(res.data.data[i].sellerqiye)
           // wx.downloadFile({
           //   url: getApp().globalData.server + res.data.data[i].sellerqiye.maplogo_image,
           //   success: function(ret) {
+          // let iconPath = ''
+          // if (that.data.qiyeS.length > 6) {
+          // iconPath = that.data.iconP[id]
+          // } else if (res.data.data[i].sellerqiye.name == "华润万家") {
+          //   iconPath = '../../images/icon/hr.png'
+          // } else if (res.data.data[i].sellerqiye.name == "中化石油") {
+          //   iconPath = '../../images/icon/zh.png'
+          // } else if (res.data.data[i].sellerqiye.name == "中国联通") {
+          //   iconPath = '../../images/icon/lt.png'
+          // } else if (res.data.data[i].sellerqiye.name == "苏宁易购") {
+          //   iconPath = '../../images/icon/sn.png'
+          // } else if (res.data.data[i].sellerqiye.name == "红孩子") {
+          //   iconPath = '../../images/icon/hh.png'
+          // } else if (res.data.data[i].sellerqiye.name == "国美零售") {
+          //   iconPath = '../../images/icon/gm.png'
+          // } 
           let id = res.data.data[i].sellerqiye.id
+          that.setData({
+            iconPone: that.data.iconP[id]
+          })
           markers.push({
             id: res.data.data[i].id,
             latitude: res.data.data[i].tx_y,
@@ -328,7 +349,7 @@ Page({
           that.setData({
             markers
           })
-          console.log(markers)
+          // console.log(markers)
           //   }
           // })
         }
@@ -355,7 +376,6 @@ Page({
         })
       }
     }
-
   },
   regionChange: function() {
     let that = this;
@@ -367,7 +387,7 @@ Page({
         // console.log(that.data.latitude)
         // console.log(that.data.longitude)
         let ll = that.getFlatternDistance(that.data.latitude, that.data.longitude, res.latitude, res.longitude)
-        console.log(ll)
+        // console.log(ll)
         if (ll > 20000) {
           that.getSellerData(res.latitude, res.longitude)
           that.setData({
@@ -392,6 +412,14 @@ Page({
     wx.navigateTo({
       url: '../shopitem/shopitem?x=' + this.data.longitude + '&y=' + this.data.latitude
     })
+  },
+  play: function() {
+    let that = this;
+    that.getSellerData(that.data.latitude, that.data.longitude)
+  },
+  gps: function() {
+    let that = this;
+    that.mapCtx.moveToLocation();
   },
   openMap: function() {
     if (this.data.isLog) {
@@ -438,9 +466,6 @@ Page({
       }
     })
   },
-
-
-
   getRad: function(d) {
     var PI = Math.PI;
     return d * PI / 180.0;
@@ -496,7 +521,7 @@ Page({
    */
   onShow: function() {
     let that = this;
-    that.getQiYeData();
+    // that.getQiYeData();
   },
   onShareAppMessage: function() {
 
