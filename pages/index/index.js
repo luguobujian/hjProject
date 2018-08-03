@@ -25,6 +25,8 @@ Page({
 
     latitude: "",
     longitude: "",
+    nowlatitude: "",
+    nowlongitude: "",
     currentCity: "",
     markers: [],
     iconP: {},
@@ -171,6 +173,8 @@ Page({
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
+          nowlatitude: res.latitude,
+          nowlongitude: res.longitude,
         })
       },
       fail: function(res) {
@@ -360,8 +364,12 @@ Page({
   markertap(e) {
     // console.log(e.markerId)
     // console.log(this)
+    
     for (let i = 0; i < this.data.sellerLocationData.length; i++) {
       if (this.data.sellerLocationData[i].id == e.markerId) {
+        let juli = this.getFlatternDistance(this.data.nowlatitude, this.data.nowlongitude, this.data.sellerLocationData[i].y, this.data.sellerLocationData[i].x)
+        let onejuli = Math.floor(juli)
+        console.log(onejuli)
         this.setData({
           oneIsShow: 0,
           oneLogo: getApp().globalData.server + this.data.sellerLocationData[i].sellerqiye.logo_image,
@@ -369,11 +377,13 @@ Page({
           oneName: this.data.sellerLocationData[i].name,
           oneAddress: this.data.sellerLocationData[i].address,
           oneTel: this.data.sellerLocationData[i].mobile,
-          onejuli: this.data.sellerLocationData[i].juli,
+          // onejuli: this.data.sellerLocationData[i].juli,
+          onejuli,
           oneLatitude: this.data.sellerLocationData[i].y,
           oneLongitude: this.data.sellerLocationData[i].x,
           oneDongTai: this.data.sellerLocationData[i].dongtai
         })
+        
       }
     }
   },
@@ -410,7 +420,7 @@ Page({
   },
   openShopItemsPage: function() {
     wx.navigateTo({
-      url: '../shopitem/shopitem?x=' + this.data.longitude + '&y=' + this.data.latitude
+      url: '../shopitem/shopitem?x=' + this.data.nowlongitude + '&y=' + this.data.nowlatitude
     })
   },
   play: function() {
